@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './layout/Header/Header';
 import CategoriesSection from './sections/CategoriesSection/CategoriesSection';
+import TestimonialsSection from './sections/TestimonialsSection/TestimonialsSection';
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <Header />
       <main>
         <CategoriesSection />
+        <TestimonialsSection />
       </main>
     </>
   );

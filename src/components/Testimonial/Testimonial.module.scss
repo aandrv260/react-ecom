@@ -1,0 +1,52 @@
+.testimonial {
+  padding: 2rem 2.4rem 2.8rem;
+  box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.2);
+  border-radius: 1.2rem;
+  transition: all 0.3s;
+
+  &:hover {
+    transform: translateY(-6px) scale(1.05);
+    box-shadow: 0 2rem 1rem rgba(0, 0, 0, 0.2);
+  }
+
+  &__header {
+    justify-content: space-between;
+    margin-bottom: 1.6rem;
+  }
+
+  &__header,
+  &__customer-box {
+    display: flex;
+    align-items: center;
+  }
+
+  &__customer-box {
+    gap: 1rem;
+  }
+
+  &__name,
+  &__time-posted {
+    font-size: 1.4rem;
+  }
+
+  &__name {
+    color: #444;
+  }
+
+  &__time-posted {
+    color: #888;
+  }
+
+  &__img-box {
+    --size: 5.6rem;
+    height: var(--size);
+    width: var(--size);
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  &__text {
+    font-size: 1.4rem;
+    line-height: 1.7;
+  }
+}
