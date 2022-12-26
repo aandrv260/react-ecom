@@ -1,0 +1,30 @@
+.category-box {
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 45rem;
+  border-radius: 1rem;
+
+  &:first-child {
+    grid-column: 1 / -1;
+  }
+
+  &__info {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    bottom: 20%;
+    left: 10%;
+  }
+
+  &__category-name {
+    display: inline-block;
+    font-size: 2rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1.4rem;
+  }
+}

@@ -34,3 +34,9 @@ export const capitalizeString: CapitalizeString = value => {
 
   return firstLetter.toUpperCase() + value.slice(1);
 };
+
+export const generateId = () => {
+  const idPart = () => Math.random().toString(36).substring(2);
+
+  return idPart() + idPart();
+};

@@ -1,0 +1,32 @@
+.button {
+  padding: 1rem 2.4rem;
+  color: #fff;
+  border: 1px solid transparent;
+  border-radius: 0.8rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &--small {
+    background-color: #e67;
+    padding: 0.6rem 2.8rem;
+  }
+
+  &--full {
+    background-color: #e67;
+    color: #fff;
+  }
+
+  &--full:hover,
+  &--outline:hover {
+    background-color: #87313b;
+    color: inherit;
+    color: #fff;
+  }
+
+  &--outline {
+    border: 1px solid #87313b;
+    background-color: transparent;
+    color: #fff;
+  }
+}
