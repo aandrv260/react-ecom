@@ -8,5 +8,6 @@ export interface Product {
   image: Image;
   price: number;
   comparePrice?: number;
+  quantity: number;
   category: Category;
 }

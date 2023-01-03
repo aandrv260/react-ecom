@@ -40,3 +40,10 @@ export const generateId = () => {
 
   return idPart() + idPart();
 };
+
+export const formatToCurrency = (number: number, currency: string = 'USD') => {
+  return new Intl.NumberFormat(navigator.language, {
+    style: 'currency',
+    currency,
+  }).format(number);
+};

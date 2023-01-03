@@ -5,6 +5,7 @@ import { Cart } from './models/cart';
 import { Product } from './models/products';
 import CategoriesSection from './sections/CategoriesSection/CategoriesSection';
 import TestimonialsSection from './sections/TestimonialsSection/TestimonialsSection';
+import img1 from './assets/images/testimonials/ben.jpg';
 
 const testProducts: Product[] = [
   {
@@ -16,8 +17,10 @@ const testProducts: Product[] = [
       title: '',
     },
     price: 111,
+    comparePrice: 121,
     title: 'Example product 1',
-    image: { alt: '', src: '' },
+    image: { alt: '', src: img1 },
+    quantity: 1,
   },
 ];
 
