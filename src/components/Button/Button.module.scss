@@ -1,32 +1,59 @@
+@mixin button-normal {
+  &,
+  &:link,
+  &:visited {
+    @content;
+  }
+}
+
+@mixin button-hover {
+  &:hover,
+  &:active {
+    @content;
+  }
+}
+
 .button {
-  padding: 1rem 2.4rem;
-  color: #fff;
-  border: 1px solid transparent;
-  border-radius: 0.8rem;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.2s;
+  @include button-normal {
+    padding: 1rem 2.4rem;
+    color: var(--color-white);
+    border: 1px solid transparent;
+    border-radius: 0.8rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
 
   &--small {
-    background-color: #e67;
-    padding: 0.6rem 2.8rem;
+    @include button-normal {
+      background-color: var(--color-main);
+      padding: 0.6rem 2.8rem;
+    }
   }
 
   &--full {
-    background-color: #e67;
-    color: #fff;
+    @include button-normal {
+      background-color: var(--color-main);
+      color: var(--color-white);
+    }
   }
 
-  &--full:hover,
-  &--outline:hover {
-    background-color: #87313b;
-    color: inherit;
-    color: #fff;
+  &--small,
+  &--full {
+    @include button-hover {
+      background-color: var(--color-main-shade-5);
+    }
   }
 
   &--outline {
-    border: 1px solid #87313b;
-    background-color: transparent;
-    color: #fff;
+    @include button-normal {
+      border: 1px solid var(--color-main-shade-5);
+      background-color: transparent;
+      color: var(--color-white);
+    }
+
+    @include button-hover {
+      background-color: var(--color-main);
+    }
   }
 }

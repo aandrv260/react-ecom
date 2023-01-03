@@ -1,0 +1,89 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Colors */
+  --color-main: #ee6667;
+  --color-accent: #eeb268;
+
+  --color-main-shade-1: #180a0c;
+  --color-main-shade-2: #301418;
+  --color-main-shade-3: #5f2930;
+  --color-main-shade-4: #8f3d47;
+  --color-main-shade-5: #be525f;
+
+  --color-main-tint-1: #fce0e4;
+  --color-main-tint-2: #f8c2c9;
+  --color-main-tint-3: #f5a3ad;
+  --color-main-tint-4: #f394a0;
+  --color-main-tint-5: #f07585;
+
+  --color-white: #fff;
+  --color-grey: #eee;
+
+  --color-grey-light-1: #ddd;
+  --color-grey-light-2: #ccc;
+  --color-grey-light-3: #bbb;
+  --color-grey-light-4: #aaa;
+
+  --color-grey-dark-1: #222;
+  --color-grey-dark-2: #333;
+  --color-grey-dark-3: #555;
+  --color-grey-dark-4: #777;
+
+  --box-shadow-color-default: rgba(0, 0, 0, 0.2);
+
+  /* Spacings */
+  --gutter-vertical: 2.4rem;
+  --gutter-horizontal: 4.8rem;
+  --grid-gap: var(--gutter-horizontal) var(--gutter-vertical);
+
+  /* Typography */
+  --font-size-base: 1.6rem;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: var(--font-size-base);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+ul {
+  list-style: none;
+}
+
+:is(header, footer) ul a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+:is(input, select, textarea) {
+  font-family: inherit;
+  color: inherit;
+}
+
+:is(input, select) {
+  padding: 0.3rem 0.8rem;
+  border-radius: 0.8rem;
+  border: 1px solid var(--color-grey-light-4);
+}
+
+.container {
+  max-width: 140rem;
+  margin: 0 auto;
+  padding: 3.2rem;
+}

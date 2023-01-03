@@ -1,12 +1,12 @@
 .testimonial {
   padding: 2rem 2.4rem 2.8rem;
-  box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2rem 4rem var(--box-shadow-color-default);
   border-radius: 1.2rem;
   transition: all 0.3s;
 
   &:hover {
     transform: translateY(-6px) scale(1.05);
-    box-shadow: 0 2rem 1rem rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2rem 1rem var(--box-shadow-color-default);
   }
 
   &__header {
@@ -30,11 +30,11 @@
   }
 
   &__name {
-    color: #444;
+    color: var(--color-grey-dark-2);
   }
 
   &__time-posted {
-    color: #888;
+    color: var(--color-grey-dark-4);
   }
 
   &__img-box {

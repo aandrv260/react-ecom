@@ -14,24 +14,17 @@
 }
 
 .header {
-  &__top,
-  &__bottom {
-  }
-
   &__top {
     @extend .align-row;
     padding: 0.6rem 3.2rem;
-    background-color: #eee;
+    background-color: var(--color-grey);
   }
 
   &__bottom {
     @extend .align-row;
     padding: 1.6rem 3.2rem;
-    background-color: #222;
-    color: #fff;
-  }
-
-  &__nav {
+    background-color: var(--color-grey-dark-1);
+    color: var(--color-white);
   }
 
   &__nav-list {
@@ -45,10 +38,10 @@
   }
 
   &__nav-link {
-    color: #eee;
+    color: inherit;
 
     &:hover {
-      color: #328332;
+      color: var(--color-main-tint-3);
     }
   }
 
@@ -78,10 +71,8 @@
   &__search-form {
     display: flex;
     align-items: center;
-    // flex-basis: 20%;
-    //
+
     input {
-      //   width: 100%;
       padding-right: 2.2rem;
     }
   }
