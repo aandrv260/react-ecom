@@ -1,6 +1,8 @@
 .lang-switcher {
   display: flex;
+  width: 15rem;
 
   &__select {
+    width: 100%;
   }
 }

@@ -10,13 +10,18 @@ const navMenu: HeaderNavMenu = {
     },
 
     {
-      title: 'All categories',
+      title: 'Categories',
       url: '/all-categories',
     },
 
     {
-      title: 'All products',
+      title: 'Products',
       url: '/all-products',
+    },
+
+    {
+      title: 'Contact Us',
+      url: '/contact-us',
     },
   ],
 };
