@@ -2,17 +2,13 @@ import scss from '../../layout/Header/Header.module.scss';
 import { getStyleClassName } from '../../utils/general';
 import { ReactComponent as CartIcon } from '../../assets/icons/cartIcon.svg';
 import { ReactComponent as HeartIcon } from '../../assets/icons/heartIcon.svg';
+import IconBox from '../IconBox/IconBox';
 
 export default function HeaderIcons() {
   return (
     <div className={getStyleClassName(scss, 'header__icons')}>
-      <div className={getStyleClassName(scss, 'header__icon-box')}>
-        <CartIcon />
-      </div>
-
-      <div className={getStyleClassName(scss, 'header__icon-box')}>
-        <HeartIcon />
-      </div>
+      <IconBox className={getStyleClassName(scss, 'header__icon-box')} icon={CartIcon} />
+      <IconBox className={getStyleClassName(scss, 'header__icon-box')} icon={HeartIcon} />
     </div>
   );
 }
