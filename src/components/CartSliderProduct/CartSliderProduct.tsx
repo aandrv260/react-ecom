@@ -16,10 +16,9 @@ const CartSliderProduct: React.FC<CartSliderProductProps> = ({ product }) => {
   const [quantity, setQuantity] = useState(product.quantity);
 
   const quantityChangeHandler: ChangeEventHandler<HTMLInputElement> = event => {
-    const inputValue = +event.currentTarget.value;
+    const inputValue = event.currentTarget.value;
 
-    if (!isNaN(inputValue)) setQuantity(inputValue);
-    else throw new Error('Value must be a number');
+    setQuantity(parseInt(inputValue));
   };
 
   return (
@@ -29,6 +28,7 @@ const CartSliderProduct: React.FC<CartSliderProductProps> = ({ product }) => {
         image={product.image}
       />
 
+      {/* Contains the product title and prices */}
       <div className={getStyleClassName(scss, 'cart-slider-product__info-box')}>
         <span className={getStyleClassName(scss, 'cart-slider-product__title')}>
           {product.title}
@@ -50,6 +50,7 @@ const CartSliderProduct: React.FC<CartSliderProductProps> = ({ product }) => {
         )}
       </div>
 
+      {/* Contains the quantity input and the delete icon */}
       <div className={getStyleClassName(scss, 'cart-slider-product__actions-box')}>
         <div className={getStyleClassName(scss, 'cart-slider-product__qty-box')}>
           <input

@@ -35,8 +35,9 @@ const testCart: Cart = {
 const App = () => {
   return (
     <>
-      <CartSlider cart={testCart} />
+      <CartSlider cart={testCart} hidden />
       <Header />
+
       <main>
         <CategoriesSection />
         <TestimonialsSection />
