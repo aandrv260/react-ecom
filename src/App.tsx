@@ -1,11 +1,16 @@
-import React from 'react';
+import { lazy, Suspense } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import CartSlider from './components/CartSlider/CartSlider';
 import Header from './layout/Header/Header';
 import { Cart } from './models/cart';
 import { Product } from './models/products';
-import CategoriesSection from './sections/CategoriesSection/CategoriesSection';
-import TestimonialsSection from './sections/TestimonialsSection/TestimonialsSection';
 import img1 from './assets/images/testimonials/ben.jpg';
+import Loader from './components/Loader/Loader';
+
+// Pages
+const HomePage = lazy(() => import('./pages/HomePage'));
+const CategoriesPage = lazy(() => import('./pages/CategoriesPage'));
+const PageNotFound = lazy(() => import('./pages/PageNotFound'));
 
 const testProducts: Product[] = [
   {
@@ -35,12 +40,17 @@ const testCart: Cart = {
 const App = () => {
   return (
     <>
-      <CartSlider cart={testCart} hidden />
       <Header />
+      <CartSlider cart={testCart} hidden />
 
       <main>
-        <CategoriesSection />
-        <TestimonialsSection />
+        <Suspense fallback={<Loader />}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/categories" element={<CategoriesPage />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+        </Suspense>
       </main>
     </>
   );

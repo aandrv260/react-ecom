@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { HeaderNavMenu } from '../../models/navigation';
 import scss from '../../layout/Header/Header.module.scss';
 import { generateId, getStyleClassName } from '../../utils/general';
@@ -11,7 +12,7 @@ const navMenu: HeaderNavMenu = {
 
     {
       title: 'Categories',
-      url: '/all-categories',
+      url: '/categories',
     },
 
     {
@@ -32,9 +33,9 @@ export default function HeaderNav() {
       <ul className={getStyleClassName(scss, 'header__nav-list')}>
         {navMenu.links.map(link => (
           <li key={generateId()}>
-            <a className={getStyleClassName(scss, 'header__nav-link')} href={link.url}>
+            <Link className={getStyleClassName(scss, 'header__nav-link')} to={link.url}>
               {link.title}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>

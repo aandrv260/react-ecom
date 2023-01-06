@@ -16,7 +16,7 @@ interface CartSliderProps {
 
 const CartSlider: React.FC<CartSliderProps> = ({ cart, hidden }) => {
   const allProducts = cart.items;
-  console.log(1);
+
   return createPortal(
     <div className={getStyleClassName(scss, 'cart-slider', hidden ? 'hidden' : '')}>
       <header className={getStyleClassName(scss, 'cart-slider__header')}>

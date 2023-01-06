@@ -1,0 +1,28 @@
+.loader-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.loader {
+  --size: 50px;
+  --border-width: 5px;
+  --border-color: var(--color-grey-dark-2);
+  height: var(--size);
+  width: var(--size);
+  border-radius: 50%;
+  border: var(--border-width) solid var(--border-color);
+  border-top-color: var(--color-main-shade-5);
+  animation: rotate 1.7s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

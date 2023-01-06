@@ -19,6 +19,9 @@ const content = [
   },
 ];
 
+/**
+ * `TODO:` Add image prop
+ */
 export default function CategoriesSection() {
   return (
     <section className={`${getStyleClassName(scss, 'categories-section')} container`}>
