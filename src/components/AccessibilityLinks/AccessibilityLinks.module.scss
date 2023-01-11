@@ -1,0 +1,16 @@
+.navigate-to-content-link {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-color: var(--color-main);
+  color: var(--color-white);
+  text-decoration: none;
+  padding: 1rem;
+  transition: all 0.3s;
+
+  &:focus {
+    transform: translateX(0);
+    outline-color: var(--color-white);
+  }
+}
