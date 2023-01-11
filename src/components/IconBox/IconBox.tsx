@@ -7,7 +7,7 @@ interface IconBoxProps {
 const IconBox: React.FC<IconBoxProps> = ({ className, onClick, icon: Icon }) => {
   return (
     <div className={className} onClick={onClick}>
-      {<Icon />}
+      <Icon />
     </div>
   );
 };

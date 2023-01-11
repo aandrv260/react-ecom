@@ -19,11 +19,6 @@ const navMenu: HeaderNavMenu = {
       title: 'Products',
       url: '/all-products',
     },
-
-    {
-      title: 'Contact Us',
-      url: '/contact-us',
-    },
   ],
 };
 

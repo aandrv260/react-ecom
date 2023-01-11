@@ -3,11 +3,31 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  min-height: 45rem;
   border-radius: 1rem;
 
-  &:first-child {
-    grid-column: 1 / -1;
+  &--homepage-style {
+    min-height: 45rem;
+
+    &:first-child {
+      grid-column: 1 / -1;
+    }
+  }
+
+  &--category-page-style {
+    min-height: 35rem;
+  }
+
+  &--category-page-style &__info {
+    width: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &--homepage-style &__info {
+    width: 20%;
+    bottom: 20%;
+    left: 10%;
   }
 
   &__info {
@@ -15,8 +35,7 @@
     align-items: center;
     flex-direction: column;
     position: absolute;
-    bottom: 20%;
-    left: 10%;
+    text-align: center;
   }
 
   &__category-name {

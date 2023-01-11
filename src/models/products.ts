@@ -5,9 +5,12 @@ import { Image } from './image';
 export interface Product {
   id: ID;
   title: string;
+  description: string;
+  handle: string;
   image: Image;
   price: number;
   comparePrice?: number;
   quantity: number;
+  ratingStars: number;
   category: Category;
 }
