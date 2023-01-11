@@ -1,21 +1,25 @@
+import { ButtonStyle, ButtonTextColor, ButtonType } from '../../models/button';
 import { getStyleClassName } from '../../utils/general';
 import scss from './Button.module.scss';
 
 interface ButtonProps {
   children: React.ReactNode;
-  btnStyle?: 'full' | 'outline' | 'small';
+  btnStyle?: ButtonStyle;
   link?: string;
-  type?: 'submit' | 'button' | 'reset';
-  textColor?: string;
+  type?: ButtonType;
+  textColor?: ButtonTextColor;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const Button: React.FC<ButtonProps> = ({ btnStyle, link, onClick, children, textColor, type }) => {
-  const className = getStyleClassName(scss, 'button', `button--${btnStyle || 'full'}`);
+  const mainClassName = getStyleClassName(scss, 'button', `button--${btnStyle || 'full'}`);
+  const darkTextColorClassName =
+    textColor === 'dark' ? getStyleClassName(scss, 'button-text-dark') : '';
+  const className = `${mainClassName} ${darkTextColorClassName}`.trim();
 
   if (link) {
     return (
-      <a className={`${className}`} href={link} style={{ color: textColor }}>
+      <a className={className} href={link}>
         {children}
       </a>
     );

@@ -1,0 +1,38 @@
+.account-form-wrapper {
+  display: flex;
+}
+
+.account-form {
+  width: 40%;
+  margin-top: 4.8rem;
+
+  &__heading {
+    margin-bottom: 2.4rem;
+  }
+
+  & > input:not(:last-of-type) {
+    margin-bottom: 3.4rem;
+  }
+
+  input {
+    font-size: 1.7rem;
+    width: 100%;
+    padding: 1rem 0.4rem;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #333;
+
+    &:focus {
+      outline: none;
+      border-bottom: 2px solid var(--color-main-tint-4);
+    }
+  }
+
+  button {
+    width: 40%;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 3.2rem;
+  }
+}

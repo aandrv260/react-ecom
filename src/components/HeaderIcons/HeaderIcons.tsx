@@ -10,7 +10,11 @@ export default function HeaderIcons() {
     <div className={getStyleClassName(scss, 'header__icons')}>
       <IconBox className={getStyleClassName(scss, 'header__icon-box')} icon={CartIcon} />
       <IconBox className={getStyleClassName(scss, 'header__icon-box')} icon={HeartIcon} />
-      <IconBox className={getStyleClassName(scss, 'header__icon-box')} icon={AccountIcon} />
+      <IconBox
+        className={getStyleClassName(scss, 'header__icon-box')}
+        icon={AccountIcon}
+        link="/account"
+      />
     </div>
   );
 }

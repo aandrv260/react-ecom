@@ -10,9 +10,10 @@ import AccessibilityLinks from './components/AccessibilityLinks/AccessibilityLin
 
 // Pages
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
-const CategoriesPage = lazy(() => import('./pages/CategoriesPage'));
-const PageNotFound = lazy(() => import('./pages/CategoriesPage/PageNotFound'));
+const CategoriesPage = lazy(() => import('./pages/CategoriesPage/CategoriesPage'));
+const PageNotFound = lazy(() => import('./pages/PageNotFound/PageNotFound'));
 const ProductPage = lazy(() => import('./pages/ProductPage/ProductPage'));
+const AccountPage = lazy(() => import('./pages/AccountPage/AccountPage'));
 
 // TEST OBJECTS
 const testProducts: Product[] = [
@@ -49,14 +50,15 @@ const App = () => {
     <>
       <AccessibilityLinks />
       <Header />
-      <CartSlider cart={testCart} hidden />
+      <CartSlider cart={testCart} hidden={false} />
 
       <main id="main-content">
         <Suspense fallback={<Loader />}>
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route index element={<HomePage />} />
             <Route path="/categories" element={<CategoriesPage />} />
             <Route path="/product/:handle" element={<ProductPage />} />
+            <Route index path="account" element={<AccountPage />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </Suspense>

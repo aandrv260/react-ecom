@@ -1,4 +1,4 @@
-import AllCategories from '../components/AllCategories/AllCategories';
+import AllCategories from '../../components/AllCategories/AllCategories';
 
 const CategoriesPage: React.FC<{}> = props => {
   return (
