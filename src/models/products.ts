@@ -1,4 +1,4 @@
-import { Category } from './category';
+import { ProductCategory } from './category';
 import { ID } from './general';
 import { Image } from './image';
 
@@ -11,6 +11,7 @@ export interface Product {
   price: number;
   comparePrice?: number;
   quantity: number;
+  // TODO: Make the rating optional
   ratingStars: number;
-  category: Category;
+  category: ProductCategory;
 }

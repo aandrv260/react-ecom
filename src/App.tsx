@@ -24,8 +24,6 @@ const testProducts: Product[] = [
       'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt, fugiat accusamus modi quam porro ad labore culpa ratione corrupti tempore similique pariatur error assumenda sed atque tenetur laborum corporis quas, distinctio et? Tempora nostrum dolore quas suscipit accusantium voluptate pariatur, cum neque, minima asperiores fugiat repellendus aperiam ab molestias iste?',
     category: {
       id: 'c1',
-      image: { alt: '', src: '' },
-      products: [],
       title: '',
     },
     price: 111,
@@ -50,7 +48,7 @@ const App = () => {
     <>
       <AccessibilityLinks />
       <Header />
-      <CartSlider cart={testCart} hidden={false} />
+      <CartSlider cart={testCart} hidden />
 
       <main id="main-content">
         <Suspense fallback={<Loader />}>
