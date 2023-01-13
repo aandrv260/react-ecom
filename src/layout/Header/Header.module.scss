@@ -22,7 +22,7 @@
 
   &__bottom {
     @extend .align-row;
-    padding: 1.6rem 3.2rem;
+    padding: 0 3.2rem;
     background-color: var(--color-grey-dark-1);
     color: var(--color-white);
   }
@@ -49,6 +49,10 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+
+    & > * {
+      padding: 1.6rem 0;
+    }
   }
 
   svg {
@@ -56,6 +60,7 @@
   }
 
   &__icon-box {
+    display: block;
     --size: 2rem;
     width: var(--size);
     height: var(--size);

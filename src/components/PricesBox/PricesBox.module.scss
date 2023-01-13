@@ -1,0 +1,37 @@
+.prices {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.price {
+  &__compare {
+    text-decoration: line-through;
+
+    &.price--small {
+      font-size: 1.3rem;
+    }
+
+    &.price--medium {
+      font-size: 1.6rem;
+    }
+  }
+
+  &__main {
+    font-size: 2rem;
+    color: var(--color-main-shade-2);
+    font-weight: 600;
+
+    &.price--small {
+      font-size: 1.6rem;
+    }
+
+    &.price--medium {
+      font-size: 1.9rem;
+    }
+  }
+
+  //   &__compare.price--small {
+
+  //   }
+}
