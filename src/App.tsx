@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import CartSlider from './components/CartSlider/CartSlider';
 import Header from './layout/Header/Header';
@@ -7,6 +7,8 @@ import { Product } from './models/products';
 import img1 from './assets/images/testimonials/ben.jpg';
 import Loader from './components/Loader/Loader';
 import AccessibilityLinks from './components/AccessibilityLinks/AccessibilityLinks';
+import Notification from './components/Notification/Notification';
+import { generateId } from './utils/general';
 
 // Pages
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
@@ -44,11 +46,33 @@ const testCart: Cart = {
 };
 
 const App = () => {
+  console.log('id', generateId());
+
+  useEffect(() => {
+    const awaitFunc = async () => {
+      const response = await fetch(
+        'https://react-ecom-e5729-default-rtdb.firebaseio.com/categories.json'
+      );
+      const data = await response.json();
+      console.log(data);
+    };
+
+    // awaitFunc();
+  }, []);
   return (
     <>
       <AccessibilityLinks />
       <Header />
       <CartSlider cart={testCart} hidden />
+      <Notification
+        heading="You've added the item to your wishlist!"
+        itemDetails={{
+          image: { src: img1, alt: '' },
+          price: 45,
+          comparePrice: 34,
+          title: 'Hippie Mouse',
+        }}
+      />
 
       <main id="main-content">
         <Suspense fallback={<Loader />}>

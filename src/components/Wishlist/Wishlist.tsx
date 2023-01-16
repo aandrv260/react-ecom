@@ -1,8 +1,8 @@
 import { Product } from '../../models/products';
 import { generateId, getStyleClassName } from '../../utils/general';
 import scss from './Wishlist.module.scss';
-import WishlistItem from './WishlistItem';
 import img1 from '../../assets/images/testimonials/ben.jpg';
+import PopupItem from '../PopupItem/PopupItem';
 
 interface WishlistProps {
   hidden: boolean;
@@ -35,10 +35,26 @@ const Wishlist: React.FC<WishlistProps> = ({ hidden }) => {
     <div className={getStyleClassName(scss, 'wishlist', hiddenClassName)}>
       {testProducts.map(product => (
         <div key={generateId()}>
-          <WishlistItem item={product} key={product.id} />
-          <WishlistItem item={product} key={product.id.toString() + 1} />
-          <WishlistItem item={product} key={product.id.toString() + 2} />
-          <WishlistItem item={product} key={product.id.toString() + 3} />
+          <PopupItem
+            item={product}
+            key={product.id}
+            button={{ text: 'Add to cart', onClick: () => {} }}
+          />
+          <PopupItem
+            item={product}
+            key={product.id.toString() + 1}
+            button={{ text: 'Add to cart', onClick: () => {} }}
+          />
+          <PopupItem
+            item={product}
+            key={product.id.toString() + 2}
+            button={{ text: 'Add to cart', onClick: () => {} }}
+          />
+          <PopupItem
+            item={product}
+            key={product.id.toString() + 3}
+            button={{ text: 'Add to cart', onClick: () => {} }}
+          />
         </div>
       ))}
     </div>
