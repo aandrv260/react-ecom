@@ -14,7 +14,7 @@ export default function LanguageSwitcher() {
     <div className={getStyleClassName(scss, 'lang-switcher')}>
       <select className={getStyleClassName(scss, 'lang-switcher__select')} title="Select language">
         {languages.map(lang => (
-          <option value={lang} key={Math.random()}>
+          <option value={lang} key={Math.random()} selected={lang === 'english'}>
             {capitalizeString(lang)}
           </option>
         ))}

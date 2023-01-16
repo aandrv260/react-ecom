@@ -1,22 +1,32 @@
 import CategoryBox from '../../components/CategoryBox/CategoryBox';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { AllCategoriesData } from '../../models/api';
 import { getCategoriesData } from '../../utils/api';
 import Loader from '../../components/Loader/Loader';
 import Grid from '../../components/Grid/Grid';
+import useStoreData from '../../hooks/useStoreData';
 
 export default function CategoriesSection() {
   const [allCategories, setAllCategories] = useState<AllCategoriesData>([]);
   const [isLoading, setIsLoading] = useState(true);
   const isLoadingClassName = isLoading ? 'loading' : '';
 
-  // TODO: Save to global state
-  useEffect(() => {
-    getCategoriesData(data => {
-      setAllCategories(data);
-      setIsLoading(false);
-    });
+  const dataArrivalHandler = useCallback((data: AllCategoriesData) => {
+    setAllCategories(data);
+    setIsLoading(false);
   }, []);
+
+  // TODO: Save to global state
+  useStoreData({
+    dataType: 'categories',
+    onDataArrival: dataArrivalHandler,
+  });
+  // useEffect(() => {
+  //   getCategoriesData(data => {
+  //     setAllCategories(data);
+  //     setIsLoading(false);
+  //   });
+  // }, []);
 
   return (
     <section>

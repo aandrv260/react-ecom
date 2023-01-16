@@ -1,17 +1,27 @@
-import { useEffect } from 'react';
-import { API_ROOT } from '../constants/api';
-import { generateId } from '../utils/general';
+import { useCallback, useEffect } from 'react';
+import { CategoryData } from '../models/api';
+import { fetchData } from '../utils/api';
 
-// Only for testing (for now)
-const useStoreData = () => {
+type StoreDataType = 'product' | 'category' | 'categories' | 'products';
+
+interface Config {
+  dataType: StoreDataType;
+  id?: string | null;
+  onDataArrival: (data: any) => void;
+}
+
+const useStoreData = (options: Config) => {
+  const { dataType, id, onDataArrival } = options;
+
+  const saveData = useCallback(async () => {
+    const endpoint = id ? `${dataType}/${id}` : dataType;
+    const data = await fetchData(endpoint);
+    onDataArrival(data);
+  }, [dataType, id, onDataArrival]);
+
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch(API_ROOT);
-      const data = await res.json();
-      console.log(data);
-    };
-  });
+    saveData();
+  }, [saveData]);
 };
 
-console.log('id', generateId());
 export default useStoreData;

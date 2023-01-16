@@ -51,17 +51,3 @@ export const getCategoriesData: FetchSpecificData<AllCategoriesData> = async cal
   callback && callback(data);
   return data;
 };
-
-export const getCategoryData: FetchSpecificDataByID<CategoryData> = async (id, callback) => {
-  const data = (await fetchData(`category/${id}`)) as CategoryData;
-
-  callback && callback(data);
-  return data;
-};
-
-export const getProductData: FetchSpecificDataByID<ProductData> = async (id, callback) => {
-  const data = (await fetchData(`product/${id}`)) as ProductData;
-
-  callback && callback(data);
-  return data;
-};
