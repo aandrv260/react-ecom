@@ -7,10 +7,6 @@
 
   &--homepage-style {
     min-height: 45rem;
-
-    &:first-child {
-      grid-column: 1 / -1;
-    }
   }
 
   &--category-page-style {

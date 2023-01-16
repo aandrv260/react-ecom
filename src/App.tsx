@@ -8,7 +8,6 @@ import img1 from './assets/images/testimonials/ben.jpg';
 import Loader from './components/Loader/Loader';
 import AccessibilityLinks from './components/AccessibilityLinks/AccessibilityLinks';
 import Notification from './components/Notification/Notification';
-import { generateId } from './utils/general';
 
 // Pages
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
@@ -46,19 +45,6 @@ const testCart: Cart = {
 };
 
 const App = () => {
-  console.log('id', generateId());
-
-  useEffect(() => {
-    const awaitFunc = async () => {
-      const response = await fetch(
-        'https://react-ecom-e5729-default-rtdb.firebaseio.com/categories.json'
-      );
-      const data = await response.json();
-      console.log(data);
-    };
-
-    // awaitFunc();
-  }, []);
   return (
     <>
       <AccessibilityLinks />

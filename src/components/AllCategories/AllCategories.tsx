@@ -13,6 +13,7 @@ const AllCategories = () => {
             key={generateId()}
             link="#"
             title="Example categorie"
+            bgImage=""
             boxStyle="category-page"
           />
         ))}
