@@ -2,34 +2,26 @@ import React, { useState } from 'react';
 import scss from './ProductDetails.module.scss';
 import { Product } from '../../models/products';
 import { getStyleClassName } from '../../utils/general';
-import { ReactComponent as StarIcon } from '../../assets/icons/star.svg';
 import IconBox from '../IconBox/IconBox';
 import Button from '../Button/Button';
+import { ProductData } from '../../models/api';
+import Prices from '../PricesBox/PricesBox';
+import Rating from '../Rating/Rating';
 
 interface ProductDetailsProps {
-  product: Product;
+  product: ProductData;
 }
 
-interface Prices {
+interface PricesTypes {
   main: number;
   compare?: number;
 }
 
-const putNumberOfElementsIntoArray = (value: number) => {
-  const array = [];
-
-  for (let i = 0; i < value; i++) {
-    array.push(i);
-  }
-
-  return array;
-};
-
 const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
   const [quantity, setQuantity] = useState<number>(1);
-  const [currentPrices, setCurrentPrices] = useState<Prices>({
-    main: product.price,
-    compare: product.comparePrice,
+  const [currentPrices, setCurrentPrices] = useState<PricesTypes>({
+    main: product?.price,
+    compare: product?.comparePrice,
   });
 
   const isInputQtyGreaterThanProductQty = (curQuantity: number) => curQuantity > product.quantity;
@@ -66,29 +58,15 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
 
         {/* Product Information */}
         <div className={getStyleClassName(scss, 'product-details__info')}>
-          <div className={getStyleClassName(scss, 'product-details__rating')}>
-            {putNumberOfElementsIntoArray(product.ratingStars).map(num => (
-              <IconBox
-                className={getStyleClassName(scss, 'product-details__star-icon-box')}
-                icon={StarIcon}
-                key={num}
-              />
-            ))}
-          </div>
-
+          {product.ratingStars && <Rating stars={product.ratingStars} />}
           <h1 className={getStyleClassName(scss, 'product-details__title')}>{product.title}</h1>
 
-          <div className={getStyleClassName(scss, 'product-details__price-box')}>
-            {product.comparePrice && (
-              <span className={getStyleClassName(scss, 'product-details__compare-price')}>
-                ${currentPrices.compare}
-              </span>
-            )}
-
-            <span className={getStyleClassName(scss, 'product-details__price')}>
-              ${currentPrices.main}
-            </span>
-          </div>
+          <Prices
+            className={getStyleClassName(scss, 'product-details__price-box')}
+            price={currentPrices.main}
+            comparePrice={currentPrices.compare}
+            fontSize="large"
+          />
 
           <div className={getStyleClassName(scss, 'product-details__description-box')}>
             {product.description}

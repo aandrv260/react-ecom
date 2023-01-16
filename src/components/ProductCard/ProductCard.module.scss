@@ -6,7 +6,7 @@
     transform: scale(1.05);
   }
 
-  :is(&__img, &__title) {
+  :is(&__img-box, &__title) {
     margin-bottom: 0.4rem;
   }
 
@@ -25,6 +25,5 @@
 
   &__title {
     color: var(--color-grey-dark-2);
-    // margin-bottom: 0.4rem;
   }
 }

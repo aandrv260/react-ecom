@@ -5,6 +5,7 @@ import {
   FetchData,
   FetchSpecificData,
   FetchSpecificDataByID,
+  ProductData,
 } from '../models/api';
 
 export const getCategoryApiURL = (categoryId: string) => {
@@ -36,6 +37,7 @@ export const fetchData: FetchData = async endpoint => {
 
 // TODO: There is a duplicate code because of still not being able to set up generics properly. Fix it as soon as possible
 // An idea is to wrap it in a generic class, it will work that way.
+// It will work with a custom hook that is a generic function
 
 /**
  * Fetches the information for all categories at once.
@@ -52,6 +54,13 @@ export const getCategoriesData: FetchSpecificData<AllCategoriesData> = async cal
 
 export const getCategoryData: FetchSpecificDataByID<CategoryData> = async (id, callback) => {
   const data = (await fetchData(`category/${id}`)) as CategoryData;
+
+  callback && callback(data);
+  return data;
+};
+
+export const getProductData: FetchSpecificDataByID<ProductData> = async (id, callback) => {
+  const data = (await fetchData(`product/${id}`)) as ProductData;
 
   callback && callback(data);
   return data;
