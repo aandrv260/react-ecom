@@ -34,6 +34,7 @@ const testProducts: Product[] = [
     image: { alt: '', src: img1 },
     quantity: 1,
     ratingStars: 5,
+    url: '/product/my-first-product',
   },
 ];
 
@@ -66,7 +67,7 @@ const App = () => {
           <Routes>
             <Route index element={<HomePage />} />
             <Route path="/categories" element={<CategoriesPage />} />
-            <Route path="/category/:id" element={<CategoryPage />} />
+            <Route path="/category/:handle" element={<CategoryPage />} />
             <Route path="/product/:handle" element={<ProductPage />} />
             <Route index path="account" element={<AccountPage />} />
             <Route path="*" element={<PageNotFound />} />

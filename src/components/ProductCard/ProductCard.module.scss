@@ -1,7 +1,30 @@
 .product-card {
+  text-decoration: none;
+  transition: all 0.3s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  :is(&__img, &__title) {
+    margin-bottom: 0.4rem;
+  }
+
   &__img {
     border-top-left-radius: 0.8rem;
     border-top-right-radius: 0.8rem;
+    border-radius: 0.8rem;
     width: 100%;
+    transition: all 0.3s;
+
+    &.hidden {
+      visibility: hidden;
+      opacity: 0;
+    }
+  }
+
+  &__title {
+    color: var(--color-grey-dark-2);
+    // margin-bottom: 0.4rem;
   }
 }

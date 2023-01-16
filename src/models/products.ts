@@ -7,6 +7,7 @@ export interface Product {
   title: string;
   description: string;
   handle: string;
+  url: string;
   image: Image;
   price: number;
   comparePrice?: number;

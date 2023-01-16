@@ -1,11 +1,21 @@
 import { Image } from './image';
+import { Product } from './products';
 
-export type APIEndpoint = '' | 'products' | 'categories';
 export type FetchDataCallbackAction<T> = (data: T) => void;
-export type FetchData = (endpoint: APIEndpoint) => Promise<unknown> | never;
-export type FetchSpecificData<T> = (callback?: FetchDataCallbackAction<T>) => Promise<T> | never;
+export type FetchData = (endpoint: string) => Promise<unknown> | never;
 
-export interface ProductData {}
+export type FetchDataAction<T> = (
+  endpoint: string,
+  callback: FetchDataCallbackAction<T>
+) => Promise<T> | never;
+
+export type FetchSpecificData<T> = (callback?: FetchDataCallbackAction<T>) => Promise<T> | never;
+export type FetchSpecificDataByID<T> = (
+  id: string,
+  callback?: FetchDataCallbackAction<T>
+) => Promise<T> | never;
+
+export interface ProductData extends Product {}
 
 export interface CategoryData {
   id: string;

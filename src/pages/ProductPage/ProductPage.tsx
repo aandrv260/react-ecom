@@ -20,6 +20,7 @@ const testProducts: Product[] = [
     image: { alt: '', src: img1 },
     quantity: 3,
     ratingStars: 5,
+    url: '/product/my-first-product',
   },
 ];
 

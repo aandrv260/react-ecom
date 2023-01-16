@@ -1,6 +1,6 @@
 import CategoryBox from '../../components/CategoryBox/CategoryBox';
 import { useEffect, useState } from 'react';
-import { AllCategoriesData, FetchData } from '../../models/api';
+import { AllCategoriesData } from '../../models/api';
 import { getCategoriesData } from '../../utils/api';
 import Loader from '../../components/Loader/Loader';
 import Grid from '../../components/Grid/Grid';
