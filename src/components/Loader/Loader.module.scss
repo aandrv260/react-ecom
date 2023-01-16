@@ -3,6 +3,10 @@
   align-items: center;
   justify-content: center;
   padding: 2rem;
+
+  &.center {
+    text-align: center;
+  }
 }
 
 .loader {

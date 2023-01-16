@@ -15,6 +15,7 @@ const CategoriesPage = lazy(() => import('./pages/CategoriesPage/CategoriesPage'
 const PageNotFound = lazy(() => import('./pages/PageNotFound/PageNotFound'));
 const ProductPage = lazy(() => import('./pages/ProductPage/ProductPage'));
 const AccountPage = lazy(() => import('./pages/AccountPage/AccountPage'));
+const CategoryPage = lazy(() => import('./pages/CategoryPage/CategoryPage'));
 
 // TEST OBJECTS
 const testProducts: Product[] = [
@@ -65,6 +66,7 @@ const App = () => {
           <Routes>
             <Route index element={<HomePage />} />
             <Route path="/categories" element={<CategoriesPage />} />
+            <Route path="/category/:id" element={<CategoryPage />} />
             <Route path="/product/:handle" element={<ProductPage />} />
             <Route index path="account" element={<AccountPage />} />
             <Route path="*" element={<PageNotFound />} />

@@ -1,13 +1,14 @@
 import scss from './AllCategories.module.scss';
 import { generateId, getStyleClassName } from '../../utils/general';
 import CategoryBox from '../CategoryBox/CategoryBox';
+import Grid from '../Grid/Grid';
 
 const testArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 const AllCategories = () => {
   return (
     <div className="container">
-      <div className={`grid grid--4-cols ${getStyleClassName(scss, 'all-categories')}`}>
+      <Grid className={getStyleClassName(scss, 'all-categories')} columns={4}>
         {testArr.map(() => (
           <CategoryBox
             key={generateId()}
@@ -17,7 +18,7 @@ const AllCategories = () => {
             boxStyle="category-page"
           />
         ))}
-      </div>
+      </Grid>
     </div>
   );
 };

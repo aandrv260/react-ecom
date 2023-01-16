@@ -1,0 +1,17 @@
+.grid {
+  display: grid;
+  gap: var(--grid-gap);
+
+  &.loading {
+    display: block;
+    text-align: center;
+  }
+}
+
+$grid-cols: 2, 3, 4, 5;
+
+@each $col in $grid-cols {
+  .grid--#{$col}-cols {
+    grid-template-columns: repeat(#{$col}, 1fr);
+  }
+}
