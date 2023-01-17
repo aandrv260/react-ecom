@@ -10,9 +10,8 @@ import ReduxStore from '../models/redux-slices/store';
 import {
   addQuantityToCartItem,
   checkItemAlreadyExistsInCart,
-  getCartItemById,
   getCartItemIndexById,
-  getTotalCartPrice,
+  toggleBodyElementScroll,
   updateCartTotalAmount,
   updateCartTotalAmountAndQuantity,
   updateCartTotalQuantity,
@@ -32,14 +31,17 @@ const cartSlice = createSlice({
   reducers: {
     openDrawer(state) {
       state.isHidden = false;
+      toggleBodyElementScroll('hide');
     },
 
     closeDrawer(state) {
       state.isHidden = true;
+      toggleBodyElementScroll('show');
     },
 
     toggleDrawer(state) {
       state.isHidden = !state.isHidden;
+      toggleBodyElementScroll(state.isHidden ? 'show' : 'hide');
     },
 
     addItem(state, action: PayloadAction<AddItemPayload>) {
@@ -50,7 +52,6 @@ const cartSlice = createSlice({
       const { index, itemExistsInCart } = checkItemAlreadyExistsInCart(state, newItem);
 
       if (itemExistsInCart) {
-        // state.items[index].quantity++;
         addQuantityToCartItem(state, index);
         updateCartTotalAmount(state);
         return;

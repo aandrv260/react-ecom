@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { createPortal } from 'react-dom';
 import scss from './CartSlider.module.scss';
 import { Cart } from '../../models/cart';
@@ -7,6 +8,7 @@ import { cartActions } from '../../store';
 import CartProducts from './CartProducts';
 import CartSummary from './CartSummary';
 import CartHeader from './CartHeader';
+import Overlay from '../Overlay/Overlay';
 
 interface CartSliderProps {
   cart: Cart;
@@ -16,6 +18,7 @@ interface CartSliderProps {
 /* Later make it possible to extract the cart data directly from the Context API */
 
 const CartSlider: React.FC<CartSliderProps> = ({ cart, hidden }) => {
+  const cartWrapperRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
 
   const cartCloseHandler = () => {
@@ -23,11 +26,16 @@ const CartSlider: React.FC<CartSliderProps> = ({ cart, hidden }) => {
   };
 
   return createPortal(
-    <div className={getStyleClassName(scss, 'cart-slider', hidden ? 'hidden' : '')}>
-      <CartHeader onClose={cartCloseHandler} />
-      <CartProducts items={cart.items} />
-      <CartSummary total={cart.total} subtotal={cart.subtotal} />
-    </div>,
+    <Overlay hidden={hidden}>
+      <div
+        className={getStyleClassName(scss, 'cart-slider', hidden ? 'hidden' : '')}
+        ref={cartWrapperRef}
+      >
+        <CartHeader onClose={cartCloseHandler} />
+        <CartProducts items={cart.items} />
+        <CartSummary total={cart.total} subtotal={cart.subtotal} />
+      </div>
+    </Overlay>,
     document.getElementById('cart-slider') as HTMLElement
   );
 };

@@ -23,6 +23,10 @@ export const checkItemAlreadyExistsInCart = (cartState: Cart, cartItem: CartItem
   };
 };
 
+export const toggleBodyElementScroll = (actionType: 'hide' | 'show') => {
+  document.body.style.overflowY = actionType === 'hide' ? 'hidden' : 'scroll';
+};
+
 /**
  * This must only be used in Reducer functions because it overwrites parts of the existing state
  * @param state - The whole cart state slice
