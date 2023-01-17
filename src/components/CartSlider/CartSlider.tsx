@@ -4,11 +4,11 @@ import scss from './CartSlider.module.scss';
 import { Cart } from '../../models/cart';
 import { getStyleClassName } from '../../utils/general';
 import { useDispatch } from 'react-redux/es/hooks/useDispatch';
-import { cartActions } from '../../store';
 import CartProducts from './CartProducts';
 import CartSummary from './CartSummary';
 import CartHeader from './CartHeader';
 import Overlay from '../Overlay/Overlay';
+import { cartActions } from '../../store/cartSlice';
 
 interface CartSliderProps {
   cart: Cart;

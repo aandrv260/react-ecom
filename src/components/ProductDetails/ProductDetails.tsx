@@ -8,8 +8,8 @@ import Button from '../Button/Button';
 import { ProductData } from '../../models/api';
 import Prices from '../PricesBox/PricesBox';
 import Rating from '../Rating/Rating';
-import { cartActions } from '../../store';
 import { CartItem } from '../../models/cart';
+import { cartActions } from '../../store/cartSlice';
 
 interface ProductDetailsProps {
   product: ProductData;

@@ -7,7 +7,8 @@ import { ReactComponent as PlusIcon } from '../../assets/icons/plus.svg';
 import { ReactComponent as MinusIcon } from '../../assets/icons/minus.svg';
 import { ReactComponent as TrashIcon } from '../../assets/icons/trash.svg';
 import { CartItem } from '../../models/cart';
-import { cartActions, useCustomSelector } from '../../store';
+import { useCustomSelector } from '../../store';
+import { cartActions } from '../../store/cartSlice';
 
 interface CartSliderProductProps {
   item: CartItem;

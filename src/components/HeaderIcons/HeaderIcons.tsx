@@ -7,7 +7,7 @@ import { ReactComponent as HeartIcon } from '../../assets/icons/heartIcon.svg';
 import { ReactComponent as AccountIcon } from '../../assets/icons/accountIcon.svg';
 import IconBox from '../IconBox/IconBox';
 import Wishlist from '../Wishlist/Wishlist';
-import { cartActions } from '../../store';
+import { cartActions } from '../../store/cartSlice';
 
 export default function HeaderIcons() {
   const [wishlistIsOpen, setWishlistIsOpen] = useState<boolean>(false);
