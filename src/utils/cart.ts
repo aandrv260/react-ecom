@@ -48,3 +48,8 @@ export const getCartItemById = (state: Cart, id: string): CartItem | undefined =
 export const getCartItemIndexById = (state: Cart, id: string): number => {
   return state.items.findIndex(curItem => curItem.product.id === id);
 };
+
+export const updateCartTotalAmountAndQuantity = (cartState: Cart) => {
+  updateCartTotalAmount(cartState);
+  updateCartTotalQuantity(cartState);
+};

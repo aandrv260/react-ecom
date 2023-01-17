@@ -23,6 +23,10 @@ const CartSliderProduct: React.FC<CartSliderProductProps> = ({ item }) => {
     dispatch(cartActions.removeItem(item.product.id));
   };
 
+  const changeQuantityHandler = (newQuantity: number) => {
+    dispatch(cartActions.changeQuantity({ id: item.product.id, newQuantity }));
+  };
+
   return (
     <div className={getStyleClassName(scss, 'cart-slider-product')}>
       <ImageBox
@@ -59,19 +63,23 @@ const CartSliderProduct: React.FC<CartSliderProductProps> = ({ item }) => {
             type="number"
             min={0}
             value={curQty}
-            onChange={() => {}}
-            placeholder={item.product.quantity.toString()}
+            onChange={event => {
+              changeQuantityHandler(+event.currentTarget.value);
+            }}
+            placeholder={curQty?.toString() || '1'}
           />
 
           <div className={getStyleClassName(scss, 'cart-slider-product__icons-box')}>
             <IconBox
               className={getStyleClassName(scss, 'cart-slider-product__qty-icon-box')}
               icon={PlusIcon}
+              onClick={changeQuantityHandler.bind(null, item.quantity + 1)}
             />
 
             <IconBox
               className={getStyleClassName(scss, 'cart-slider-product__qty-icon-box')}
               icon={MinusIcon}
+              onClick={changeQuantityHandler.bind(null, item.quantity - 1)}
             />
           </div>
 

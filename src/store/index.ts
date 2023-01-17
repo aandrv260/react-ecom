@@ -1,7 +1,11 @@
 import { createSlice, PayloadAction, configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useSelector } from 'react-redux';
 import { Cart } from '../models/cart';
-import { AddItemPayload, RemoveItemPayload } from '../models/redux-slices/cart';
+import {
+  AddItemPayload,
+  ChangeQuantityPayload,
+  RemoveItemPayload,
+} from '../models/redux-slices/cart';
 import ReduxStore from '../models/redux-slices/store';
 import {
   addQuantityToCartItem,
@@ -10,6 +14,7 @@ import {
   getCartItemIndexById,
   getTotalCartPrice,
   updateCartTotalAmount,
+  updateCartTotalAmountAndQuantity,
   updateCartTotalQuantity,
 } from '../utils/cart';
 
@@ -52,13 +57,17 @@ const cartSlice = createSlice({
       }
 
       state.items.push(newItem);
-      updateCartTotalAmount(state);
-      updateCartTotalQuantity(state);
+      updateCartTotalAmountAndQuantity(state);
 
       // Open drawer to let the user check the cart
       cartSlice.caseReducers.openDrawer(state);
     },
 
+    /**
+     * Removes an item from the caart
+     * @param state - The cart slice state
+     * @param action.payload The id of the product in the cart item that should be deleted
+     */
     removeItem(state, action: PayloadAction<RemoveItemPayload>) {
       const itemId = action.payload;
       const indexOfItemToRemove = getCartItemIndexById(state, itemId);
@@ -69,8 +78,34 @@ const cartSlice = createSlice({
       }
 
       state.items.splice(indexOfItemToRemove, 1);
-      updateCartTotalAmount(state);
-      updateCartTotalQuantity(state);
+      updateCartTotalAmountAndQuantity(state);
+    },
+
+    /**
+     * Updates a cart item's `quantity` property.
+     * Warning: This will overwrite the cart item's existing `quantity` property.
+     * @param state - The cart slice state
+     * @param action.payload An object which contains the id and the new quantity of the item
+     */
+    changeQuantity(state, action: PayloadAction<ChangeQuantityPayload>) {
+      const { id: itemId, newQuantity } = action.payload;
+      const indexOfItemToBeEdited = getCartItemIndexById(state, itemId);
+
+      if (indexOfItemToBeEdited === -1) {
+        console.error('No item found that matches the id provided.');
+        return;
+      }
+
+      if (newQuantity <= 0) {
+        // Delete the cart item
+        state.items.splice(indexOfItemToBeEdited, 1);
+        updateCartTotalAmount(state);
+        updateCartTotalQuantity(state);
+        return;
+      }
+
+      state.items[indexOfItemToBeEdited].quantity = newQuantity;
+      updateCartTotalAmountAndQuantity(state);
     },
   },
 });
