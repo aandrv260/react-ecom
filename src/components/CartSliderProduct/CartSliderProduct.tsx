@@ -1,25 +1,26 @@
 import scss from './CartSliderProduct.module.scss';
-import { Product } from '../../models/products';
 import { formatToCurrency, getStyleClassName } from '../../utils/general';
 import ImageBox from '../ImageBox/ImageBox';
-import { ChangeEventHandler, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import IconBox from '../IconBox/IconBox';
 import { ReactComponent as PlusIcon } from '../../assets/icons/plus.svg';
 import { ReactComponent as MinusIcon } from '../../assets/icons/minus.svg';
 import { ReactComponent as TrashIcon } from '../../assets/icons/trash.svg';
 import { CartItem } from '../../models/cart';
+import { cartActions, useCustomSelector } from '../../store';
 
 interface CartSliderProductProps {
   item: CartItem;
 }
 
 const CartSliderProduct: React.FC<CartSliderProductProps> = ({ item }) => {
-  const [quantity, setQuantity] = useState(item.quantity);
+  const dispatch = useDispatch();
+  const curQty = useCustomSelector(state =>
+    state.cart.items.find(curItem => curItem.product.id === item.product.id)
+  )?.quantity;
 
-  const quantityChangeHandler: ChangeEventHandler<HTMLInputElement> = event => {
-    const inputValue = event.currentTarget.value;
-
-    setQuantity(parseInt(inputValue));
+  const removeItemItemHandler = () => {
+    dispatch(cartActions.removeItem(item.product.id));
   };
 
   return (
@@ -57,8 +58,8 @@ const CartSliderProduct: React.FC<CartSliderProductProps> = ({ item }) => {
           <input
             type="number"
             min={0}
-            value={quantity}
-            onChange={quantityChangeHandler}
+            value={curQty}
+            onChange={() => {}}
             placeholder={item.product.quantity.toString()}
           />
 
@@ -77,6 +78,7 @@ const CartSliderProduct: React.FC<CartSliderProductProps> = ({ item }) => {
           <IconBox
             className={getStyleClassName(scss, 'cart-slider-product__delete-icon-box')}
             icon={TrashIcon}
+            onClick={removeItemItemHandler}
           />
         </div>
       </div>

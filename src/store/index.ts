@@ -1,7 +1,17 @@
 import { createSlice, PayloadAction, configureStore } from '@reduxjs/toolkit';
+import { TypedUseSelectorHook, useSelector } from 'react-redux';
 import { Cart } from '../models/cart';
-import { AddProductPayload } from '../models/redux-slices/cart';
-import { getTotalCartPrice } from '../utils/cart';
+import { AddItemPayload, RemoveItemPayload } from '../models/redux-slices/cart';
+import ReduxStore from '../models/redux-slices/store';
+import {
+  addQuantityToCartItem,
+  checkItemAlreadyExistsInCart,
+  getCartItemById,
+  getCartItemIndexById,
+  getTotalCartPrice,
+  updateCartTotalAmount,
+  updateCartTotalQuantity,
+} from '../utils/cart';
 
 const initialCartState: Cart = {
   items: [],
@@ -27,21 +37,46 @@ const cartSlice = createSlice({
       state.isHidden = !state.isHidden;
     },
 
-    addProduct(state, action: PayloadAction<AddProductPayload>) {
-      const newProduct = action.payload;
+    addItem(state, action: PayloadAction<AddItemPayload>) {
+      const newItem = action.payload;
 
-      if (!newProduct) return;
+      if (!newItem) return;
 
-      state.items.push(newProduct);
-      state.total = getTotalCartPrice(state.items);
+      const { index, itemExistsInCart } = checkItemAlreadyExistsInCart(state, newItem);
 
-      // 1 item is 1 product, not quantity of all products in cart
-      state.totalItems++;
+      if (itemExistsInCart) {
+        // state.items[index].quantity++;
+        addQuantityToCartItem(state, index);
+        updateCartTotalAmount(state);
+        return;
+      }
+
+      state.items.push(newItem);
+      updateCartTotalAmount(state);
+      updateCartTotalQuantity(state);
+
+      // Open drawer to let the user check the cart
+      cartSlice.caseReducers.openDrawer(state);
+    },
+
+    removeItem(state, action: PayloadAction<RemoveItemPayload>) {
+      const itemId = action.payload;
+      const indexOfItemToRemove = getCartItemIndexById(state, itemId);
+
+      if (indexOfItemToRemove === -1) {
+        console.error(`No item found based on the id provided. ID: ${itemId}`);
+        return;
+      }
+
+      state.items.splice(indexOfItemToRemove, 1);
+      updateCartTotalAmount(state);
+      updateCartTotalQuantity(state);
     },
   },
 });
 
 export const cartActions = cartSlice.actions;
+export const useCustomSelector: TypedUseSelectorHook<ReduxStore> = useSelector;
 
 const store = configureStore({
   reducer: {

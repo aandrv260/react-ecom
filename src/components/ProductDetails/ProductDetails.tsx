@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import scss from './ProductDetails.module.scss';
 import { Product } from '../../models/products';
 import { getStyleClassName } from '../../utils/general';
@@ -7,6 +8,8 @@ import Button from '../Button/Button';
 import { ProductData } from '../../models/api';
 import Prices from '../PricesBox/PricesBox';
 import Rating from '../Rating/Rating';
+import { cartActions } from '../../store';
+import { CartItem } from '../../models/cart';
 
 interface ProductDetailsProps {
   product: ProductData;
@@ -19,6 +22,7 @@ interface PricesTypes {
 
 const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
   const [quantity, setQuantity] = useState<number>(1);
+  const dispatch = useDispatch();
   const [currentPrices, setCurrentPrices] = useState<PricesTypes>({
     main: product?.price,
     compare: product?.comparePrice,
@@ -40,10 +44,11 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
     });
   };
 
-  const addToCartHandler: React.MouseEventHandler<HTMLButtonElement> = event => {
+  const addToCartHandler: React.FormEventHandler<HTMLFormElement> = event => {
     event.preventDefault();
 
     // TODO: Make the cart slider appear appear on the right after the product is added to cart
+    dispatch(cartActions.addItem({ product, quantity }));
   };
 
   return (
@@ -68,6 +73,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
             fontSize="large"
           />
 
+          {/* Description */}
           <div className={getStyleClassName(scss, 'product-details__description-box')}>
             {product.description}
           </div>
@@ -80,7 +86,11 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
             )}
           </div>
 
-          <form className={getStyleClassName(scss, 'product-details__cta-form')}>
+          {/* Add to cart form */}
+          <form
+            className={getStyleClassName(scss, 'product-details__cta-form')}
+            onSubmit={addToCartHandler}
+          >
             <input
               type="text"
               value={quantity}
@@ -88,9 +98,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
               placeholder={quantity.toString()}
             />
 
-            <Button type="submit" onClick={addToCartHandler}>
-              Add to cart
-            </Button>
+            <Button type="submit">Add to cart</Button>
           </form>
         </div>
       </div>

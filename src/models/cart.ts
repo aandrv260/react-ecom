@@ -9,6 +9,6 @@ export interface Cart {
 }
 
 export interface CartItem {
-  product: Product;
+  product: Readonly<Product>;
   quantity: number;
 }

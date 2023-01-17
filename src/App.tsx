@@ -2,12 +2,11 @@ import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import CartSlider from './components/CartSlider/CartSlider';
 import Header from './layout/Header/Header';
-import { Cart } from './models/cart';
 import img1 from './assets/images/testimonials/ben.jpg';
 import Loader from './components/Loader/Loader';
 import AccessibilityLinks from './components/AccessibilityLinks/AccessibilityLinks';
 import Notification from './components/Notification/Notification';
-import { useSelector } from 'react-redux/es/exports';
+import { useCustomSelector } from './store';
 
 // Pages
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
@@ -18,7 +17,7 @@ const AccountPage = lazy(() => import('./pages/AccountPage/AccountPage'));
 const CategoryPage = lazy(() => import('./pages/CategoryPage/CategoryPage'));
 
 const App = () => {
-  const { cart } = useSelector<Cart>(state => state) as { cart: Cart };
+  const cart = useCustomSelector(state => state.cart);
 
   return (
     <>
