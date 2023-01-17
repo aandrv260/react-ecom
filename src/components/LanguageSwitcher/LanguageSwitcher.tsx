@@ -5,7 +5,7 @@ import scss from './LanguageSwitcher.module.scss';
 type Language = 'english' | 'bulgarian';
 
 // TODO: For testing purposes - must be removed later
-const languages: readonly Language[] = ['bulgarian', 'english'];
+const languages: readonly Language[] = ['english', 'bulgarian'];
 
 export default function LanguageSwitcher() {
   const [lang, setLang] = useState<Language>('english');
@@ -14,7 +14,7 @@ export default function LanguageSwitcher() {
     <div className={getStyleClassName(scss, 'lang-switcher')}>
       <select className={getStyleClassName(scss, 'lang-switcher__select')} title="Select language">
         {languages.map(lang => (
-          <option value={lang} key={Math.random()} selected={lang === 'english'}>
+          <option value={lang} key={Math.random()} defaultValue={lang}>
             {capitalizeString(lang)}
           </option>
         ))}

@@ -1,9 +1,14 @@
 import { Product } from './products';
 
 export interface Cart {
-  items: Product[];
+  items: CartItem[];
   subtotal: number;
-  shippingPrice: number;
   total: number;
   totalItems: number;
+  isHidden: boolean;
+}
+
+export interface CartItem {
+  product: Product;
+  quantity: number;
 }

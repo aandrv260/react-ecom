@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import scss from '../../layout/Header/Header.module.scss';
 import { getStyleClassName } from '../../utils/general';
 import { ReactComponent as CartIcon } from '../../assets/icons/cartIcon.svg';
@@ -5,10 +7,15 @@ import { ReactComponent as HeartIcon } from '../../assets/icons/heartIcon.svg';
 import { ReactComponent as AccountIcon } from '../../assets/icons/accountIcon.svg';
 import IconBox from '../IconBox/IconBox';
 import Wishlist from '../Wishlist/Wishlist';
-import { useState } from 'react';
+import { cartActions } from '../../store';
 
 export default function HeaderIcons() {
   const [wishlistIsOpen, setWishlistIsOpen] = useState<boolean>(false);
+  const dispatch = useDispatch();
+
+  const toggleCart = () => {
+    dispatch(cartActions.toggleDrawer());
+  };
 
   const wishlistOpenHandler = () => {
     setWishlistIsOpen(prevState => !prevState);
@@ -17,7 +24,11 @@ export default function HeaderIcons() {
   return (
     <div className={getStyleClassName(scss, 'header__icons')}>
       <div>
-        <IconBox className={getStyleClassName(scss, 'header__icon-box')} icon={CartIcon} />
+        <IconBox
+          className={getStyleClassName(scss, 'header__icon-box')}
+          icon={CartIcon}
+          onClick={toggleCart}
+        />
       </div>
 
       <div style={{ position: 'relative' }}>

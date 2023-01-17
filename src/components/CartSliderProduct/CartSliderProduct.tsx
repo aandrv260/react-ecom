@@ -7,13 +7,14 @@ import IconBox from '../IconBox/IconBox';
 import { ReactComponent as PlusIcon } from '../../assets/icons/plus.svg';
 import { ReactComponent as MinusIcon } from '../../assets/icons/minus.svg';
 import { ReactComponent as TrashIcon } from '../../assets/icons/trash.svg';
+import { CartItem } from '../../models/cart';
 
 interface CartSliderProductProps {
-  product: Product;
+  item: CartItem;
 }
 
-const CartSliderProduct: React.FC<CartSliderProductProps> = ({ product }) => {
-  const [quantity, setQuantity] = useState(product.quantity);
+const CartSliderProduct: React.FC<CartSliderProductProps> = ({ item }) => {
+  const [quantity, setQuantity] = useState(item.quantity);
 
   const quantityChangeHandler: ChangeEventHandler<HTMLInputElement> = event => {
     const inputValue = event.currentTarget.value;
@@ -25,27 +26,27 @@ const CartSliderProduct: React.FC<CartSliderProductProps> = ({ product }) => {
     <div className={getStyleClassName(scss, 'cart-slider-product')}>
       <ImageBox
         className={getStyleClassName(scss, 'cart-slider-product__img-box')}
-        image={product.image}
+        image={item.product.image}
       />
 
       {/* Contains the product title and prices */}
       <div className={getStyleClassName(scss, 'cart-slider-product__info-box')}>
         <span className={getStyleClassName(scss, 'cart-slider-product__title')}>
-          {product.title}
+          {item.product.title}
         </span>
-        {product.comparePrice ? (
+        {item.product.comparePrice ? (
           <div className={getStyleClassName(scss, 'cart-slider-product__price-box')}>
             <span className={getStyleClassName(scss, 'cart-slider-product__compare-price')}>
-              {formatToCurrency(product.comparePrice)}
+              {formatToCurrency(item.product.comparePrice)}
             </span>
 
             <span className={getStyleClassName(scss, 'cart-slider-product__price')}>
-              {formatToCurrency(product.price)}
+              {formatToCurrency(item.product.price)}
             </span>
           </div>
         ) : (
           <span className={getStyleClassName(scss, 'cart-slider-product__price')}>
-            {formatToCurrency(product.price)}
+            {formatToCurrency(item.product.price)}
           </span>
         )}
       </div>
@@ -58,7 +59,7 @@ const CartSliderProduct: React.FC<CartSliderProductProps> = ({ product }) => {
             min={0}
             value={quantity}
             onChange={quantityChangeHandler}
-            placeholder={product.quantity.toString()}
+            placeholder={item.product.quantity.toString()}
           />
 
           <div className={getStyleClassName(scss, 'cart-slider-product__icons-box')}>
