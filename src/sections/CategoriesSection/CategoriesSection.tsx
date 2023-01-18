@@ -16,17 +16,11 @@ export default function CategoriesSection() {
     setIsLoading(false);
   }, []);
 
-  // TODO: Save to global state
+  // TODO: Save to global state to prevent sending HTTP requests if the page has already been visited
   useStoreData({
     dataType: 'categories',
     onDataArrival: dataArrivalHandler,
   });
-  // useEffect(() => {
-  //   getCategoriesData(data => {
-  //     setAllCategories(data);
-  //     setIsLoading(false);
-  //   });
-  // }, []);
 
   return (
     <section>

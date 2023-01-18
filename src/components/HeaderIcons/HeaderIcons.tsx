@@ -12,7 +12,7 @@ import { useCustomSelector } from '../../store';
 
 export default function HeaderIcons() {
   const dispatch = useDispatch();
-  const wishlistIsOpen = useCustomSelector(state => state.wishlist.isHidden);
+  const wishlist = useCustomSelector(state => state.wishlist);
 
   const toggleCart = () => {
     dispatch(cartActions.toggleDrawer());
@@ -39,7 +39,7 @@ export default function HeaderIcons() {
           onClick={wishlistOpenHandler}
         />
 
-        <Wishlist hidden={wishlistIsOpen} />
+        <Wishlist items={wishlist.items} hidden={wishlist.isHidden} />
       </div>
 
       <div>

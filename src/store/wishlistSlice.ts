@@ -1,7 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AddItemToWishlistPayload } from '../models/redux-slices/wishlist';
+import {
+  AddItemToWishlistPayload,
+  RemoveItemTFromWishlistPayload,
+} from '../models/redux-slices/wishlist';
 import { Wishlist } from '../models/wishlist';
-import { wishlistAlreadyContainsItem } from '../utils/wishlist';
+import {
+  findIndexOfWishlistItemById,
+  updateWishlistItemsCount,
+  wishlistAlreadyContainsItem,
+} from '../utils/wishlist';
 
 const initialState: Wishlist = {
   items: [],
@@ -34,7 +41,22 @@ const wishlistSlice = createSlice({
       const newItem = action.payload;
       const itemIsAlreadyInWishlist = wishlistAlreadyContainsItem(state, newItem);
 
-      !itemIsAlreadyInWishlist && state.items.push(action.payload);
+      if (itemIsAlreadyInWishlist) return;
+
+      state.items.push(action.payload);
+      updateWishlistItemsCount(state);
+    },
+
+    removeItem(state, action: PayloadAction<RemoveItemTFromWishlistPayload>) {
+      const idOfItemToBeRemoved = action.payload;
+      const indexOfItemToBeRemoved = findIndexOfWishlistItemById(state, idOfItemToBeRemoved);
+
+      state.items.splice(indexOfItemToBeRemoved, 1);
+      updateWishlistItemsCount(state);
+
+      if (state.totalItems === 0) {
+        state.isHidden = true;
+      }
     },
   },
 });

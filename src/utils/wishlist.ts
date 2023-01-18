@@ -15,3 +15,11 @@ export const wishlistAlreadyContainsItem = (state: Wishlist, item: WishlistItem)
   const itemIsAlreadyInWishlist = state.items.some(curItem => curItem.id === item.id);
   return itemIsAlreadyInWishlist;
 };
+
+export const findIndexOfWishlistItemById = (state: Wishlist, id: string): number => {
+  return state.items.findIndex(curItem => curItem.id === id);
+};
+
+export const updateWishlistItemsCount = (state: Wishlist) => {
+  state.totalItems = state.items.length;
+};

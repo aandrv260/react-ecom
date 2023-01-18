@@ -7,11 +7,11 @@ import useStoreData from '../../hooks/useStoreData';
 
 const ProductPage: React.FC<{}> = () => {
   const [product, setProduct] = useState<ProductData>();
-  // TODO: Make it extract the product from the allProducts array from the Context API
   const { id } = useQuery('id');
   const dataArrivalHandler = useCallback((data: ProductData) => {
     setProduct(data);
   }, []);
+
   useStoreData({
     dataType: 'product',
     id,

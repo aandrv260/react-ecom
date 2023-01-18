@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { AnyAction, Dispatch } from 'redux';
+import { ID } from '../../models/general';
 import { Item } from '../../models/products';
 import { WishlistItem } from '../../models/wishlist';
 import { cartActions } from '../../store/cartSlice';
@@ -20,6 +20,10 @@ const WishlistItems: React.FC<WishlistItemsProps> = ({ items }) => {
     dispatch(cartActions.addItem(newCartItem));
   };
 
+  const removeItemFromWishlistHandler = (itemId: ID) => {
+    dispatch(wishlistActions.removeItem(itemId));
+  };
+
   return (
     <>
       {items.map(item => (
@@ -27,6 +31,7 @@ const WishlistItems: React.FC<WishlistItemsProps> = ({ items }) => {
           item={item}
           key={item.id}
           button={{ text: 'Add to cart', onClick: () => addToCartHandler(item) }}
+          onRemove={() => removeItemFromWishlistHandler(item.id)}
         />
       ))}
     </>

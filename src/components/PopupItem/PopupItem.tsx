@@ -4,14 +4,16 @@ import { getStyleClassName } from '../../utils/general';
 import Button from '../Button/Button';
 import Loader from '../Loader/Loader';
 import Prices from '../PricesBox/PricesBox';
+import RemoveItem from '../RemoveItem/RemoveItem';
 import scss from './PopupItem.module.scss';
 
 interface PopupItemProps {
   item: PopupItemDetails;
   button?: PopupButton;
+  onRemove?: () => void;
 }
 
-const PopupItem: React.FC<PopupItemProps> = ({ item, button }) => {
+const PopupItem: React.FC<PopupItemProps> = ({ item, button, onRemove }) => {
   const [isImageLoading, setIsImageLoading] = useState<boolean>(true);
 
   const onImageLoad = () => {
@@ -20,6 +22,7 @@ const PopupItem: React.FC<PopupItemProps> = ({ item, button }) => {
 
   return (
     <div className={getStyleClassName(scss, 'popup-item')}>
+      {onRemove && <RemoveItem onRemove={onRemove} />}
       <div className={getStyleClassName(scss, 'popup-item__info')}>
         <div className={getStyleClassName(scss, 'popup-item__img-box')}>
           {isImageLoading && <Loader size="small" />}
