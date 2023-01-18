@@ -1,0 +1,15 @@
+.buttons-wrapper {
+  display: flex;
+
+  &.gap-small {
+    gap: 1.2rem;
+  }
+
+  &.gap-medium {
+    gap: 2.4rem;
+  }
+
+  &.gap-large {
+    gap: 3.2rem;
+  }
+}
