@@ -4,15 +4,16 @@ import { Image } from './image';
 
 export type ProductRatingStars = 1 | 2 | 3 | 4 | 5;
 
-export interface Product {
+export interface Item {
   id: ID;
   title: string;
-  description: string;
-  handle: string;
-  url: string;
   image: Image;
   price: number;
   comparePrice?: number;
+}
+export interface Product extends Item {
+  description: string;
+  handle: string;
   quantity: number;
   // TODO: Make the rating optional
   ratingStars: ProductRatingStars;

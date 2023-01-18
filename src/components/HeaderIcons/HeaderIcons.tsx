@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import scss from '../../layout/Header/Header.module.scss';
 import { getStyleClassName } from '../../utils/general';
@@ -8,17 +7,19 @@ import { ReactComponent as AccountIcon } from '../../assets/icons/accountIcon.sv
 import IconBox from '../IconBox/IconBox';
 import Wishlist from '../Wishlist/Wishlist';
 import { cartActions } from '../../store/cartSlice';
+import { wishlistActions } from '../../store/wishlistSlice';
+import { useCustomSelector } from '../../store';
 
 export default function HeaderIcons() {
-  const [wishlistIsOpen, setWishlistIsOpen] = useState<boolean>(false);
   const dispatch = useDispatch();
+  const wishlistIsOpen = useCustomSelector(state => state.wishlist.isHidden);
 
   const toggleCart = () => {
     dispatch(cartActions.toggleDrawer());
   };
 
   const wishlistOpenHandler = () => {
-    setWishlistIsOpen(prevState => !prevState);
+    dispatch(wishlistActions.toggle());
   };
 
   return (
@@ -37,6 +38,7 @@ export default function HeaderIcons() {
           icon={HeartIcon}
           onClick={wishlistOpenHandler}
         />
+
         <Wishlist hidden={wishlistIsOpen} />
       </div>
 

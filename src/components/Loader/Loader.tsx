@@ -1,10 +1,16 @@
 import { getStyleClassName } from '../../utils/general';
 import scss from './Loader.module.scss';
 
-const Loader: React.FC<{}> = () => {
+interface LoaderProps {
+  size?: 'small' | 'large';
+}
+
+const Loader: React.FC<LoaderProps> = ({ size }) => {
+  const loaderSizeClassName = `size-${size || 'large'}`;
+
   return (
     <div className={getStyleClassName(scss, 'loader-container')}>
-      <div className={getStyleClassName(scss, 'loader')}></div>
+      <div className={getStyleClassName(scss, 'loader', loaderSizeClassName)}></div>
     </div>
   );
 };

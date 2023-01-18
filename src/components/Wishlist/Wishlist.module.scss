@@ -13,7 +13,25 @@
   transition: all 0.2s ease-in-out;
   padding-inline: 1.2rem;
 
+  &::-webkit-scrollbar {
+    width: 1rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--color-main);
+  }
+
   &.hidden {
     transform: scale(1);
+  }
+
+  &__empty {
+    color: var(--color-main-shade-3);
+    text-align: center;
+    padding: 2rem;
   }
 }

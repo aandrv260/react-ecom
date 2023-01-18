@@ -1,4 +1,4 @@
-import { Product } from './products';
+import { Item, Product } from './products';
 
 export interface Cart {
   items: CartItem[];
@@ -9,6 +9,6 @@ export interface Cart {
 }
 
 export interface CartItem {
-  product: Readonly<Product>;
+  product: Readonly<Item>;
   quantity: number;
 }

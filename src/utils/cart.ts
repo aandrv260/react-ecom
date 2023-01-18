@@ -1,9 +1,17 @@
 import { Cart, CartItem } from '../models/cart';
+import { Item } from '../models/products';
 
 interface ItemExists {
   itemExistsInCart: boolean;
   index: number;
 }
+
+export const createNewCartItem = (item: Item, quantity: number = 1): CartItem => {
+  return {
+    product: item,
+    quantity,
+  };
+};
 
 export const getTotalCartPrice = (cartItems: CartItem[]) => {
   return cartItems.reduce((acc, curItem) => {

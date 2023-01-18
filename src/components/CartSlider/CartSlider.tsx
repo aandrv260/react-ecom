@@ -15,10 +15,7 @@ interface CartSliderProps {
   hidden: boolean;
 }
 
-/* Later make it possible to extract the cart data directly from the Context API */
-
 const CartSlider: React.FC<CartSliderProps> = ({ cart, hidden }) => {
-  const cartWrapperRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
 
   const cartCloseHandler = () => {
@@ -27,13 +24,19 @@ const CartSlider: React.FC<CartSliderProps> = ({ cart, hidden }) => {
 
   return createPortal(
     <Overlay hidden={hidden}>
-      <div
-        className={getStyleClassName(scss, 'cart-slider', hidden ? 'hidden' : '')}
-        ref={cartWrapperRef}
-      >
+      <div className={getStyleClassName(scss, 'cart-slider', hidden ? 'hidden' : '')}>
         <CartHeader onClose={cartCloseHandler} />
-        <CartProducts items={cart.items} />
-        <CartSummary total={cart.total} subtotal={cart.subtotal} />
+
+        {cart.items.length === 0 ? (
+          <div className={getStyleClassName(scss, 'cart-slider__empty')}>
+            <p>Your cart is empty</p>
+          </div>
+        ) : (
+          <>
+            <CartProducts items={cart.items} />
+            <CartSummary total={cart.total} subtotal={cart.subtotal} />
+          </>
+        )}
       </div>
     </Overlay>,
     document.getElementById('cart-slider') as HTMLElement

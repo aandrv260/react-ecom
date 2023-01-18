@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import scss from './ProductDetails.module.scss';
-import { Product } from '../../models/products';
 import { getStyleClassName } from '../../utils/general';
-import IconBox from '../IconBox/IconBox';
 import Button from '../Button/Button';
 import { ProductData } from '../../models/api';
 import Prices from '../PricesBox/PricesBox';
 import Rating from '../Rating/Rating';
-import { CartItem } from '../../models/cart';
 import { cartActions } from '../../store/cartSlice';
+import ButtonsWrapper from '../ButtonsWrapper/ButtonsWrapper';
+import { WishlistItem } from '../../models/wishlist';
+import { getWishlistItemFromProduct } from '../../utils/wishlist';
+import { wishlistActions } from '../../store/wishlistSlice';
 
 interface ProductDetailsProps {
   product: ProductData;
@@ -44,11 +45,16 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
     });
   };
 
+  // Add item to Cart
   const addToCartHandler: React.FormEventHandler<HTMLFormElement> = event => {
     event.preventDefault();
-
-    // TODO: Make the cart slider appear appear on the right after the product is added to cart
     dispatch(cartActions.addItem({ product, quantity }));
+  };
+
+  // Add item to Wishlist
+  const addToWishlistHandler = () => {
+    const newWishlistItem = getWishlistItemFromProduct(product);
+    dispatch(wishlistActions.addItem(newWishlistItem));
   };
 
   return (
@@ -90,6 +96,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
           <form
             className={getStyleClassName(scss, 'product-details__cta-form')}
             onSubmit={addToCartHandler}
+            style={{ flexDirection: 'column' }}
           >
             <input
               type="text"
@@ -98,7 +105,17 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
               placeholder={quantity.toString()}
             />
 
-            <Button type="submit">Add to cart</Button>
+            <ButtonsWrapper>
+              <Button type="submit">Add to cart</Button>
+              <Button
+                btnStyle="outline"
+                textColor="dark"
+                type="button"
+                onClick={addToWishlistHandler}
+              >
+                Add to wishlist
+              </Button>
+            </ButtonsWrapper>
           </form>
         </div>
       </div>
