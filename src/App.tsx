@@ -24,7 +24,8 @@ const App = () => {
       <AccessibilityLinks />
       <Header />
       <CartSlider cart={cart} hidden={cart.isHidden} />
-      {/* <Notification
+
+      <Notification
         heading="You've added the item to your wishlist!"
         itemDetails={{
           image: { src: img1, alt: '' },
@@ -32,7 +33,8 @@ const App = () => {
           comparePrice: 34,
           title: 'Hippie Mouse',
         }}
-      /> */}
+        hidden={false}
+      />
 
       <main id="main-content">
         <Suspense fallback={<Loader />}>

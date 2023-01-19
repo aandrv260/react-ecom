@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import { createPortal } from 'react-dom';
 import scss from './CartSlider.module.scss';
 import { Cart } from '../../models/cart';

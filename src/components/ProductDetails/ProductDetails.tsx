@@ -8,8 +8,7 @@ import Prices from '../PricesBox/PricesBox';
 import Rating from '../Rating/Rating';
 import { cartActions } from '../../store/cartSlice';
 import ButtonsWrapper from '../ButtonsWrapper/ButtonsWrapper';
-import { WishlistItem } from '../../models/wishlist';
-import { getWishlistItemFromProduct } from '../../utils/wishlist';
+import { convertProductToWishlistItem } from '../../utils/wishlist';
 import { wishlistActions } from '../../store/wishlistSlice';
 
 interface ProductDetailsProps {
@@ -53,7 +52,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
 
   // Add item to Wishlist
   const addToWishlistHandler = () => {
-    const newWishlistItem = getWishlistItemFromProduct(product);
+    const newWishlistItem = convertProductToWishlistItem(product);
     dispatch(wishlistActions.addItem(newWishlistItem));
   };
 

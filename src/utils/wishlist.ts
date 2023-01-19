@@ -1,7 +1,7 @@
 import { Product } from '../models/products';
 import { Wishlist, WishlistItem } from '../models/wishlist';
 
-export const getWishlistItemFromProduct = (product: Product): WishlistItem => {
+export const convertProductToWishlistItem = (product: Product): WishlistItem => {
   return {
     id: product.id,
     title: product.title,
