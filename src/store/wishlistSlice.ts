@@ -38,13 +38,14 @@ const wishlistSlice = createSlice({
      * @param action.payload - `WishlistItem` type
      */
     addItem(state, action: PayloadAction<AddItemToWishlistPayload>) {
-      const newItem = action.payload;
+      const { item: newItem, onItemAdded } = action.payload;
       const itemIsAlreadyInWishlist = wishlistAlreadyContainsItem(state, newItem);
 
       if (itemIsAlreadyInWishlist) return;
 
-      state.items.push(action.payload);
+      state.items.push(newItem);
       updateWishlistItemsCount(state);
+      onItemAdded && onItemAdded(newItem);
     },
 
     removeItem(state, action: PayloadAction<RemoveItemTFromWishlistPayload>) {

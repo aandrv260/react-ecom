@@ -7,7 +7,8 @@ import { useDispatch } from 'react-redux';
 import { wishlistActions } from '../../store/wishlistSlice';
 import { useCustomSelector } from '../../store';
 import { wishlistAlreadyContainsItem } from '../../utils/wishlist';
-import { useMemo } from 'react';
+import { useContext, useEffect, useMemo } from 'react';
+import { PopupContext } from '../../context/PopupContext';
 
 interface SaveToWishlistIconProps {
   item: Item;
@@ -16,6 +17,7 @@ interface SaveToWishlistIconProps {
 const SaveToWishlistIcon: React.FC<SaveToWishlistIconProps> = ({ item }) => {
   const dispatch = useDispatch();
   const wishlist = useCustomSelector(state => state.wishlist);
+  const popupContext = useContext(PopupContext);
 
   // It shouldn't call wishlistAlreadyContainsItem() on each component re-evaluation because it's O(n) complexity
   const isItemInWishlist = useMemo(() => {
@@ -23,6 +25,11 @@ const SaveToWishlistIcon: React.FC<SaveToWishlistIconProps> = ({ item }) => {
   }, [wishlist, item]);
 
   const itemIsWishlistedClassName = isItemInWishlist ? 'item-wishlisted' : '';
+
+  const showPopupOnAddToWishlist = () => {
+    popupContext.updateContent("You've added this item to your wishlist", item);
+    popupContext.open();
+  };
 
   const saveOrRemoveItemFromWishlistHandler = (
     event: React.MouseEvent<HTMLDivElement | HTMLAnchorElement>
@@ -34,7 +41,7 @@ const SaveToWishlistIcon: React.FC<SaveToWishlistIconProps> = ({ item }) => {
       return;
     }
 
-    dispatch(wishlistActions.addItem(item));
+    dispatch(wishlistActions.addItem({ item, onItemAdded: showPopupOnAddToWishlist }));
   };
 
   return (

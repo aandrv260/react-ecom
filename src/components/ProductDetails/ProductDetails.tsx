@@ -53,7 +53,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
   // Add item to Wishlist
   const addToWishlistHandler = () => {
     const newWishlistItem = convertProductToWishlistItem(product);
-    dispatch(wishlistActions.addItem(newWishlistItem));
+    dispatch(wishlistActions.addItem({ item: newWishlistItem }));
   };
 
   return (

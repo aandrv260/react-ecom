@@ -25,16 +25,7 @@ const App = () => {
       <Header />
       <CartSlider cart={cart} hidden={cart.isHidden} />
 
-      <Notification
-        heading="You've added the item to your wishlist!"
-        itemDetails={{
-          image: { src: img1, alt: '' },
-          price: 45,
-          comparePrice: 34,
-          title: 'Hippie Mouse',
-        }}
-        hidden={false}
-      />
+      <Notification />
 
       <main id="main-content">
         <Suspense fallback={<Loader />}>
