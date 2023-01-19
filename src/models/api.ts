@@ -15,7 +15,7 @@ export type FetchSpecificDataByID<T> = (
   callback?: FetchDataCallbackAction<T>
 ) => Promise<T> | never;
 
-export interface ProductData extends Product {}
+export type ProductData = Product;
 
 export interface CategoryData {
   id: string;

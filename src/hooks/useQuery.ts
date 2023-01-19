@@ -32,6 +32,7 @@ const useQuery = (requestedValues: string | string[]): ReadonlyQueryParameters =
     values[value] = searchParams.get(value);
   });
 
+  // TODO: Make it return values as ReadonlyQueryParameters
   return {
     ...values,
   } as ReadonlyQueryParameters;

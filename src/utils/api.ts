@@ -1,12 +1,5 @@
 import { API_ROOT } from '../constants/api';
-import {
-  AllCategoriesData,
-  CategoryData,
-  FetchData,
-  FetchSpecificData,
-  FetchSpecificDataByID,
-  ProductData,
-} from '../models/api';
+import { AllCategoriesData, FetchData, FetchSpecificData } from '../models/api';
 
 export const getCategoryApiURL = (categoryId: string) => {
   return `https://react-ecom-e5729-default-rtdb.firebaseio.com/category/${categoryId}`;
@@ -17,22 +10,11 @@ export const getProductApiURL = (productId: string) => {
 };
 
 export const fetchData: FetchData = async endpoint => {
-  try {
-    const apiURL = `${API_ROOT}/${endpoint}.json`;
-    const resp = await fetch(apiURL);
-    const data = await resp.json();
+  const apiURL = `${API_ROOT}/${endpoint}.json`;
+  const resp = await fetch(apiURL);
+  const data = await resp.json();
 
-    return data;
-  } catch (err: any) {
-    if (err instanceof Error) {
-      console.log('-------------------');
-      console.log('Error occured in `fetchData` async function:');
-      console.error(err.message);
-      console.log('-------------------');
-    }
-
-    return [];
-  }
+  return data;
 };
 
 // TODO: There is a duplicate code because of still not being able to set up generics properly. Fix it as soon as possible
