@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react';
 import FailMessage from '../../components/FailMessage/FailMessage';
+import PageContent from '../../components/PageContent/PageContent';
 import ProductsList from '../../components/ProductsList/ProductsList';
 import useDataFailed from '../../hooks/useDataFailed';
 import useQuery from '../../hooks/useQuery';
@@ -23,13 +24,14 @@ const CategoryPage: React.FC<{}> = () => {
   });
 
   return (
-    <>
-      {dataFailed ? (
-        <FailMessage message="Products data failed to fetch. Please try again later" />
-      ) : (
-        <ProductsList products={category?.products || []} />
-      )}
-    </>
+    <PageContent
+      dataFailure={{
+        hasFailed: dataFailed,
+        message: 'Products data failed to fetch. Please try again later',
+      }}
+    >
+      <ProductsList products={category?.products || []} />
+    </PageContent>
   );
 };
 

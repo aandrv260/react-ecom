@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { wishlistActions } from '../../store/wishlistSlice';
 import { useCustomSelector } from '../../store';
 import { wishlistAlreadyContainsItem } from '../../utils/wishlist';
-import { useContext, useEffect, useMemo } from 'react';
+import { useContext, useMemo } from 'react';
 import { PopupContext } from '../../context/PopupContext';
 
 interface SaveToWishlistIconProps {
