@@ -4,9 +4,11 @@ import { Image } from '../../models/image';
 import { getStyleClassName } from '../../utils/general';
 import Loader from '../Loader/Loader';
 import Prices from '../PricesBox/PricesBox';
+import SaveToWishlistIcon from '../SaveToWishlistIcon/SaveToWishlistIcon';
 import scss from './ProductCard.module.scss';
 
 interface ProductCardProps {
+  id: string;
   title: string;
   link: string;
   image: Image;
@@ -14,7 +16,14 @@ interface ProductCardProps {
   comparePrice?: number;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ title, image, link, price, comparePrice }) => {
+const ProductCard: React.FC<ProductCardProps> = ({
+  title,
+  image,
+  link,
+  price,
+  comparePrice,
+  id,
+}) => {
   const [imageHasLoaded, setImageHasLoaded] = useState(false);
   const hideImageClassName = !imageHasLoaded ? 'hidden' : '';
 
@@ -33,6 +42,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ title, image, link, price, co
           alt={image.alt || title}
           onLoad={imageFinishedLoadingHandler}
         />
+
+        <SaveToWishlistIcon item={{ id, image, price, title, comparePrice }} />
       </div>
       <h3 className={getStyleClassName(scss, 'product-card__title')}>{title}</h3>
       <Prices price={price} comparePrice={comparePrice} fontSize="small" />

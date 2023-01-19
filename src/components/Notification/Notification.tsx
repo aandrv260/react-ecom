@@ -1,7 +1,5 @@
 import { getStyleClassName } from '../../utils/general';
-import IconBox from '../IconBox/IconBox';
 import scss from './Notification.module.scss';
-import { ReactComponent as CloseIcon } from '../../assets/icons/close.svg';
 import PopupItem from '../PopupItem/PopupItem';
 import { PopupButton, PopupItemDetails } from '../../models/popup';
 import { useState } from 'react';
@@ -34,11 +32,6 @@ const Notification: React.FC<NotificationProps> = props => {
               className={getStyleClassName(scss, 'notification__close-icon')}
               onRemove={closeNotificationHandler}
             />
-            {/* <IconBox
-              className={getStyleClassName(scss, 'notification__close-icon')}
-              icon={CloseIcon}
-              onClick={closeNotificationHandler}
-            /> */}
           </header>
 
           <div className={getStyleClassName(scss, 'notification__main-content')}>

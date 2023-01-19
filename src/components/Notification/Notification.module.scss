@@ -25,6 +25,8 @@
   }
 
   &__close-icon {
+    top: 0.8rem;
+    right: 1rem;
     --size: 2rem;
     width: var(--size);
     height: var(--size);

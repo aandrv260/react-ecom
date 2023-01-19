@@ -1,5 +1,4 @@
 import { ProductData } from '../../models/api';
-import { Product } from '../../models/products';
 import Grid from '../Grid/Grid';
 import ProductCard from '../ProductCard/ProductCard';
 import scss from './ProductsList.module.scss';
@@ -13,6 +12,7 @@ const ProductsList: React.FC<ProductsListProps> = ({ products }) => {
     <Grid className="container" columns={3}>
       {products.map(product => (
         <ProductCard
+          id={product.id}
           title={product.title}
           price={product.price}
           comparePrice={product.comparePrice}

@@ -11,6 +11,7 @@ export const convertProductToWishlistItem = (product: Product): WishlistItem => 
   };
 };
 
+// TODO: Refactor. Make it accept only the wishlist items array and itemId instead of the whole item
 export const wishlistAlreadyContainsItem = (state: Wishlist, item: WishlistItem): boolean => {
   const itemIsAlreadyInWishlist = state.items.some(curItem => curItem.id === item.id);
   return itemIsAlreadyInWishlist;
