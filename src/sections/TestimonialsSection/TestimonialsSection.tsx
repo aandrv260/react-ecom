@@ -1,9 +1,9 @@
-import scss from './TestimonialsSection.module.scss';
-import { generateId, getStyleClassName } from '../../utils/general';
+import { generateId } from '../../utils/general';
 
 import testimonialImage from '../../assets/images/testimonials/ben.jpg';
 import Testimonial from '../../components/Testimonial/Testimonial';
 import { TestimonialType } from '../../models/testimonials';
+import Grid from '../../components/Grid/Grid';
 
 const initialTestimonialsContent: TestimonialType[] = [
   {
@@ -52,11 +52,11 @@ const initialTestimonialsContent: TestimonialType[] = [
 const TestimonialsSection = () => {
   return (
     <section>
-      <div className={`${getStyleClassName(scss, 'testimonials')} container`}>
+      <Grid className="container" columns={3}>
         {initialTestimonialsContent.map(testimonial => (
           <Testimonial data={testimonial} key={generateId()} />
         ))}
-      </div>
+      </Grid>
     </section>
   );
 };

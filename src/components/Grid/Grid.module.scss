@@ -1,3 +1,5 @@
+@import '../../assets/scss/mixins';
+
 .grid {
   display: grid;
   gap: var(--grid-gap);
@@ -13,5 +15,28 @@ $grid-cols: 2, 3, 4, 5;
 @each $col in $grid-cols {
   .grid--#{$col}-cols {
     grid-template-columns: repeat(#{$col}, 1fr);
+
+    @if ($col == 3) {
+      @include adapt(mid-tablet) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @include adapt(large-phone) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @if ($col == 2) {
+      @include adapt(tablet) {
+        grid-template-columns: 1fr;
+      }
+    }
   }
 }
+
+// 750px
+// @media only screen and (max-width: 46.875em) {
+//   .grid--2-cols {
+//     grid-template-columns: 1fr;
+//   }
+// }

@@ -1,3 +1,5 @@
+@import './assets/scss/mixins';
+
 *,
 *::before,
 *::after {
@@ -49,6 +51,18 @@
 
 html {
   font-size: 62.5%;
+
+  @include adapt(large-desktop) {
+    font-size: 75%;
+  }
+
+  @include adapt(tablet) {
+    font-size: 56.25%;
+  }
+
+  @include adapt(phone) {
+    font-size: 50%;
+  }
 }
 
 body {

@@ -20,13 +20,7 @@ const useStoreData = (options: Config) => {
       const data = await fetchData(endpoint);
       onDataArrival(data);
     } catch (err) {
-      if (err instanceof Error) {
-        onFail();
-        console.log('-------------------');
-        console.log('Error occured in `useStoreData` hook');
-        console.warn(err.message);
-        console.log('-------------------');
-      }
+      if (err instanceof Error) onFail();
     }
   }, [dataType, id, onDataArrival, onFail]);
 

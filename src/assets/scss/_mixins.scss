@@ -1,0 +1,63 @@
+@import 'variables';
+
+@mixin adapt($device-type) {
+  @if $device-type == large-desktop {
+    @media only screen and (min-width: $breakpoint-large-desktop) {
+      @content;
+    }
+  }
+
+  @if $device-type == large-tablet {
+    @media only screen and (max-width: $breakpoint-large-tablet) {
+      @content;
+    }
+  }
+
+  @if $device-type == mid-tablet {
+    @media only screen and (max-width: $breakpoint-mid-tablet) {
+      @content;
+    }
+  }
+
+  @if $device-type == tablet {
+    @media only screen and (max-width: $breakpoint-tablet) {
+      @content;
+    }
+  }
+
+  @if $device-type == small-tablet {
+    @media only screen and (max-width: $breakpoint-small-tablet) {
+      @content;
+    }
+  }
+
+  @if $device-type == large-phone {
+    @media only screen and (max-width: $breakpoint-large-phone) {
+      @content;
+    }
+  }
+
+  @if $device-type == mid-phone {
+    @media only screen and (max-width: $breakpoint-mid-phone) {
+      @content;
+    }
+  }
+
+  @if $device-type == phone {
+    @media only screen and (max-width: $breakpoint-phone) {
+      @content;
+    }
+  }
+
+  @if $device-type == small-phone {
+    @media only screen and (max-width: $breakpoint-small-phone) {
+      @content;
+    }
+  }
+}
+
+@mixin adapt-custom($width) {
+  @media only screen and (max-width: $width) {
+    @content;
+  }
+}
