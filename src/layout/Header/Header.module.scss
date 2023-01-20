@@ -1,3 +1,5 @@
+@import '../../assets/scss/mixins';
+
 .align-row {
   display: flex;
   align-items: center;
@@ -22,13 +24,37 @@
 
   &__bottom {
     @extend .align-row;
+    gap: 4.8rem;
+    row-gap: 0;
     padding: 0 3.2rem;
     background-color: var(--color-grey-dark-1);
     color: var(--color-white);
   }
 
+  &__nav {
+    @include adapt(large-phone) {
+      display: none;
+    }
+  }
+
+  &__menu-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      --size: 2.8rem;
+      cursor: pointer;
+
+      line {
+        stroke: var(--color-white);
+      }
+    }
+  }
+
   &__nav-list {
     gap: 2rem;
+    flex-wrap: wrap;
 
     &,
     li {
