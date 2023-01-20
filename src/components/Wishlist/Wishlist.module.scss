@@ -1,3 +1,5 @@
+@import '../../assets/scss/mixins';
+
 .wishlist {
   position: absolute;
   top: 100%;
@@ -10,8 +12,20 @@
   z-index: 10;
   transform: scale(1);
   transform-origin: top;
+  transform-origin: top right;
   transition: all 0.2s ease-in-out;
+  padding-top: 1rem;
   padding-inline: 1.2rem;
+
+  @include adapt(phone) {
+    right: -1.6rem;
+  }
+
+  @include adapt(small-phone) {
+    right: -3.8rem;
+    min-width: 28rem;
+    transform-origin: 90% 10%;
+  }
 
   &::-webkit-scrollbar {
     width: 1rem;
