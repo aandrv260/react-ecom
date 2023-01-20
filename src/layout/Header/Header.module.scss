@@ -20,6 +20,10 @@
     @extend .align-row;
     padding: 0.6rem 3.2rem;
     background-color: var(--color-grey);
+
+    @include adapt(mid-phone) {
+      padding: 0.6rem 2rem;
+    }
   }
 
   &__bottom {
@@ -116,6 +120,10 @@
 
     input {
       padding-right: 2.2rem;
+
+      @include adapt(mid-phone) {
+        max-width: 18rem;
+      }
     }
   }
 
