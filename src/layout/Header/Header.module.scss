@@ -38,9 +38,13 @@
   }
 
   &__menu-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: none;
+
+    @include adapt(large-phone) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
     svg {
       --size: 2.8rem;

@@ -5,6 +5,7 @@ import HeaderSearch from '../../components/HeaderSearch/HeaderSearch';
 import LanguageSwitcher from '../../components/LanguageSwitcher/LanguageSwitcher';
 import Logo from '../../components/Logo/Logo';
 import MenuIcon from '../../components/MenuIcon/MenuIcon';
+import MobileNav from '../../components/MobileNav/MobileNav';
 import { getStyleClassName } from '../../utils/general';
 import scss from './Header.module.scss';
 
@@ -29,6 +30,8 @@ export default function Header() {
 
       {/* Bottom part */}
       <div className={getStyleClassName(scss, 'header__bottom')}>
+        <MobileNav isHidden={!isMobileNavActive} onClose={closeMobileMenu} />
+
         <MenuIcon
           className={getStyleClassName(scss, 'header__menu-icon')}
           menuOpen={false}
